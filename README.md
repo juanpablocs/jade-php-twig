@@ -9,6 +9,7 @@ npm install jade-php-twig --save-dev
 ##usage
 ```js
 var gulp        = require('gulp');
+var gulpJade    = require('gulp-jade');
 var jadePhpTwig = require('jade-php-twig');
 gulp.task('jade', function(){
 	return gulp.src('./jade/*.jade')
