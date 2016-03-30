@@ -43,15 +43,37 @@ var jadeTwigPHP =  function(jade){
   };
   
   /**
+   * addDollar
+   * @description valid si es una funcion y retorna variable + dolar
+   * @param {string} str
+   */
+  var addDollar = function(str){
+    var str = str.trim();
+    // valid function
+    if(/\(/.test(str))
+      return str;
+    // add dollar
+    if(str.charAt(0)!=='$')
+      return '$' + str;
+    return str;
+  };
+
+  /**
    * echoFormatPHP
    * @description remplaza {{ $test }} por <?php echo $test ?>
    */
   var echoFormatPHP = function(str){
     return str.replace(/\{\{(.*?)\}\}/g, function(zero,val){
-      return '<?php echo ' + addSemicolon(val)  + ' ?>';
+      var s = val.split('.');
+      // not present dots
+      if(s.length<2)
+        return '<?php echo ' + addDollar(addSemicolon(val))  + ' ?>';
+      // dots convert to arrow 
+      return '<?php ' + addDollar(addSemicolon(s.join('->')))+' ?>';
     });
   };
   
+
   /**
    * jade Lexer 
    * @description se inyecta nuevo metodo phpJadeInspiredTwig
