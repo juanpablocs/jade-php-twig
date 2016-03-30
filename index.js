@@ -6,7 +6,7 @@
 var jadeTwigPHP = require("./libs/jade-php.js");
 
 /**
- * [export jadeAtomic]
+ * [export jadeTwigPhp]
  * @param  {object} jade instance and path
  * @return {jade} instance
  */
