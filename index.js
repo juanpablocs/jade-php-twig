@@ -12,12 +12,14 @@ var jadeTwigPHP = require("./libs/jade-php.js");
  */
 module.exports = function(opt){
 	
+	var jade = require('jade');
+
 	// jade instance
-	var jadeInstance = opt.jade || require('jade');
+	var jadeInstance = typeof opt == 'object' ? (opt.jade || jade) : jade;
 	
 	// jadeTwigPHP logic
 	jadeTwigPHP(jadeInstance);
 	
 	// return jade
-	return opt.jade;
+	return jadeInstance;
 }
