@@ -1,6 +1,25 @@
 # jade-php-twig
 jade with php inspired in twig
 
+##install
+```
+npm install jade-php-twig --save-dev
+```
+
+##usage
+```js
+var gulp        = require('gulp');
+var jadePhpTwig = require('jade-php-twig');
+gulp.task('jade', function(){
+	return gulp.src('./jade/*.jade')
+		.pipe(gulpJade({
+		  jade:jadePhpTwig(),
+			pretty:true
+		}))
+		.pipe(gulp.dest('./src/'))
+})
+```
+
 ##the problem
 integration with php is bad, does not respect indenting
 ```php
