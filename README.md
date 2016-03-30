@@ -3,11 +3,11 @@ jade with php inspired in twig
 
 ##the problem
 integration with php is bad, does not respect indenting
-```jade
+```php
 .content
   <?php foreach($users as $user): ?>
   li(data-id!="<?php echo $user->id; ?>") hello <?php echo $user->name;?>
-  //- indent?
+  // indent?
   <?php endforeach; ?>
 ```
 ##examples
