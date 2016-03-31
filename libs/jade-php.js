@@ -28,6 +28,33 @@ var jadeTwigPHP =  function(jade){
   var regex_php_variable_valid = /^(?:.+|){{(?:.+|)/;
   
   /**
+   * validFilters
+   * @return boolean
+   */
+  var validFilters = function(str){
+    return /\|/.test(str);
+  };
+
+  /**
+   * validDots
+   * @param  {string} str 
+   * @return boolean
+   */
+  var validDots = function(str){
+    return /^(\w+|\$\w+)(\((.*?)\)|)\./.test(str);
+  }
+
+  /**
+   * validFunction
+   * @param  {string} str
+   * @description valid aa() and $abc()
+   * @return boolean
+   */
+  var validFunction = function(str){
+    return /^(\w+|\$\w+)\((.*?)\)/.test(str);
+  }
+
+  /**
    * addSemicolon
    * @description si el ultimo caracter no es ; agregar semicolon
    *
@@ -48,7 +75,6 @@ var jadeTwigPHP =  function(jade){
    * @param {string} str
    */
   var addDollar = function(str){
-    var str = str.trim();
     // add dollar
     if(str.charAt(0)!=='$')
       return '$' + str;
@@ -61,12 +87,27 @@ var jadeTwigPHP =  function(jade){
    */
   var echoFormatPHP = function(str){
     return str.replace(/\{\{(.*?)\}\}/g, function(zero,val){
-      var s = val.split('.');
-      // not present dots
-      if(s.length<2)
-        return '<?php echo ' + addDollar(addSemicolon(val))  + ' ?>';
-      // dots convert to arrow 
-      return '<?php echo ' + addDollar(addSemicolon(s.join('->')))+' ?>';
+      
+      var val = val.trim();
+
+      //valid filter constant
+      if(validFilters(val)){
+        var s = val.split('|');
+        if(typeof s[1] == 'string' && s[1].toLowerCase().trim()=='const')
+          return '<?php echo ' + addSemicolon(s[0]) + ' ?>';
+      }
+
+      // valid dots and conver to arrow
+      if(validDots(val)){
+        return '<?php echo ' + addDollar(addSemicolon(val.split('.').join('->')))+' ?>';
+      }
+      
+      //valid function
+      if(validFunction(val)){
+        return '<?php echo ' + addSemicolon(val) + ' ?>';
+      }
+
+      return '<?php echo ' + addDollar(addSemicolon(val))  + ' ?>';
     });
   };
   
