@@ -1,6 +1,6 @@
 {
   "name": "jade-php-twig",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "jade inspirated in twig php",
   "main": "index.js",
   "scripts": {

@@ -1,0 +1,78 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files\\nodejs\\node.exe',
+1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'publish' ]
+2 info using npm@3.7.3
+3 info using node@v5.8.0
+4 verbose publish [ '.' ]
+5 silly cache add args [ '.', null ]
+6 verbose cache add spec .
+7 silly cache add parsed spec Result {
+7 silly cache add   raw: '.',
+7 silly cache add   scope: null,
+7 silly cache add   name: null,
+7 silly cache add   rawSpec: '.',
+7 silly cache add   spec: 'C:\\Users\\JPMASTER\\development\\jade-php-twig',
+7 silly cache add   type: 'directory' }
+8 verbose addLocalDirectory C:\Users\JPMASTER\AppData\Roaming\npm-cache\jade-php-twig\1.0.1\package.tgz not in flight; packing
+9 verbose correctMkdir C:\Users\JPMASTER\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+10 info lifecycle jade-php-twig@1.0.1~prepublish: jade-php-twig@1.0.1
+11 silly lifecycle jade-php-twig@1.0.1~prepublish: no script for prepublish, continuing
+12 verbose tar pack [ 'C:\\Users\\JPMASTER\\AppData\\Roaming\\npm-cache\\jade-php-twig\\1.0.1\\package.tgz',
+12 verbose tar pack   'C:\\Users\\JPMASTER\\development\\jade-php-twig' ]
+13 verbose tarball C:\Users\JPMASTER\AppData\Roaming\npm-cache\jade-php-twig\1.0.1\package.tgz
+14 verbose folder C:\Users\JPMASTER\development\jade-php-twig
+15 verbose addLocalTarball adding from inside cache C:\Users\JPMASTER\AppData\Roaming\npm-cache\jade-php-twig\1.0.1\package.tgz
+16 verbose correctMkdir C:\Users\JPMASTER\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+17 silly cache afterAdd jade-php-twig@1.0.1
+18 verbose afterAdd C:\Users\JPMASTER\AppData\Roaming\npm-cache\jade-php-twig\1.0.1\package\package.json not in flight; writing
+19 verbose correctMkdir C:\Users\JPMASTER\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+20 verbose afterAdd C:\Users\JPMASTER\AppData\Roaming\npm-cache\jade-php-twig\1.0.1\package\package.json written
+21 silly publish { name: 'jade-php-twig',
+21 silly publish   version: '1.0.1',
+21 silly publish   description: 'jade inspirated in twig php',
+21 silly publish   main: 'index.js',
+21 silly publish   scripts: { test: 'mocha' },
+21 silly publish   repository:
+21 silly publish    { type: 'git',
+21 silly publish      url: 'git+https://github.com/juanpablocs/jade-php-twig.git' },
+21 silly publish   keywords: [ 'jadephp', 'jade', 'twig', 'jade', 'php', 'twig' ],
+21 silly publish   author: { name: 'juanpablocs21@gmail.com' },
+21 silly publish   license: 'ISC',
+21 silly publish   bugs: { url: 'https://github.com/juanpablocs/jade-php-twig/issues' },
+21 silly publish   homepage: 'https://github.com/juanpablocs/jade-php-twig#readme',
+21 silly publish   devDependencies: { mocha: '^2.4.5', should: '^8.3.0' },
+21 silly publish   dependencies: { jade: '^1.11.0' },
+21 silly publish   readme: '# jade-php-twig\r\njade with php inspired in twig\r\n\r\n##install\r\n```\r\nnpm install jade-php-twig --save-dev\r\n```\r\n\r\n##usage\r\n```js\r\nvar gulp        = require(\'gulp\');\r\nvar gulpJade    = require(\'gulp-jade\');\r\nvar jadePhpTwig = require(\'jade-php-twig\');\r\ngulp.task(\'jade\', function(){\r\n\treturn gulp.src(\'./jade/*.jade\')\r\n\t\t.pipe(gulpJade({\r\n\t\t  jade:jadePhpTwig(),\r\n\t\t\tpretty:true\r\n\t\t}))\r\n\t\t.pipe(gulp.dest(\'./src/\'))\r\n})\r\n```\r\n\r\n##the problem\r\nintegration with php is bad, does not respect indenting\r\n```php\r\n.content\r\n  <?php foreach($users as $user): ?>\r\n  li(data-id!="<?php echo $user->id; ?>") hello <?php echo $user->name;?>\r\n  <!-- indent? -->\r\n  <?php endforeach; ?>\r\n```\r\n##examples\r\nvariable in text\r\n```jade\r\ndiv.myclass hello {{ $world }} php\r\n//- result\r\n//- <div class="myclass"> hello <?php echo $world; ?> php</div>\r\n```\r\n\r\nvariable in attributes\r\n```jade\r\ndiv.myclass(data-test!="{{ $var }}") hello {{ $world }} php\r\n//- result\r\n//- <div data-test="<?php echo $var; ?>" class="myclass"> hello <?php echo $world; ?> php</div>\r\n```\r\n\r\nvariable in pipe text\r\n```jade\r\ndiv.myclass(data-test!="{{ $var }}") hello {{ $world }} php\r\n  | new line\r\n  | line with php {{ $test }}\r\n//- result\r\n//- <div data-test="<?php echo $var; ?>" class="myclass"> \r\n//-  hello <?php echo $world; ?> php\r\n//-  new line\r\n//-  line with php <?php echo $test; ?>\r\n//- </div>\r\n```\r\n\r\n##structures of control and conditional\r\nstructure foreach\r\n```jade\r\n.content\r\n  {% foreach($users as $user): %}\r\n    div hello {{ $user }}\r\n  {% endforeach %}\r\n//- result\r\n//- <div class="content">\r\n//-   <?php foreach($sers as $user): ?> \r\n//-     <div> hello <?php echo $yser; ?></div>\r\n//-   <?php endforeach; ?>\r\n//- </div>\r\n```\r\nconditional\r\n```jade\r\n.content\r\n  {% if(true): %}\r\n    div is true\r\n  {% else: %}\r\n    div is false\r\n  {% endif %}\r\n//- result\r\n//- <div class="content">\r\n//-   <?php if(true): ?> \r\n//-     <div>is true</div>\r\n//-   <?php else: ?>\r\n//-     <div>is false</div>\r\n//-   <?php endif; ?>\r\n//- </div>\r\n```\r\n\r\n',
+21 silly publish   readmeFilename: 'README.md',
+21 silly publish   gitHead: 'f859624e360a69a015204174aecb6ee003689951',
+21 silly publish   _id: 'jade-php-twig@1.0.1',
+21 silly publish   _shasum: 'b363f84da75765f19a7fa1ab2b777f7c303ab898',
+21 silly publish   _from: '.' }
+22 verbose getPublishConfig undefined
+23 silly mapToRegistry name jade-php-twig
+24 silly mapToRegistry using default registry
+25 silly mapToRegistry registry https://registry.npmjs.org/
+26 silly mapToRegistry uri https://registry.npmjs.org/jade-php-twig
+27 verbose publish registryBase https://registry.npmjs.org/
+28 silly publish uploading C:\Users\JPMASTER\AppData\Roaming\npm-cache\jade-php-twig\1.0.1\package.tgz
+29 verbose stack Error: auth required for publishing
+29 verbose stack     at CachingRegistryClient.publish (C:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\publish.js:30:14)
+29 verbose stack     at C:\Program Files\nodejs\node_modules\npm\lib\publish.js:137:14
+29 verbose stack     at mapToRegistry (C:\Program Files\nodejs\node_modules\npm\lib\utils\map-to-registry.js:55:3)
+29 verbose stack     at publish_ (C:\Program Files\nodejs\node_modules\npm\lib\publish.js:106:3)
+29 verbose stack     at Array.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\slide\lib\bind-actor.js:15:8)
+29 verbose stack     at LOOP (C:\Program Files\nodejs\node_modules\npm\node_modules\slide\lib\chain.js:15:14)
+29 verbose stack     at LOOP (C:\Program Files\nodejs\node_modules\npm\node_modules\slide\lib\chain.js:14:28)
+29 verbose stack     at chain (C:\Program Files\nodejs\node_modules\npm\node_modules\slide\lib\chain.js:20:5)
+29 verbose stack     at C:\Program Files\nodejs\node_modules\npm\lib\publish.js:72:5
+29 verbose stack     at RES (C:\Program Files\nodejs\node_modules\npm\node_modules\inflight\inflight.js:23:14)
+30 verbose cwd C:\Users\JPMASTER\development\jade-php-twig
+31 error Windows_NT 10.0.10586
+32 error argv "C:\\Program Files\\nodejs\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "publish"
+33 error node v5.8.0
+34 error npm  v3.7.3
+35 error code ENEEDAUTH
+36 error need auth auth required for publishing
+37 error need auth You need to authorize this machine using `npm adduser`
+38 verbose exit [ 1, true ]
