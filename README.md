@@ -1,5 +1,5 @@
 # jade-php-twig
-jade with php inspired in twig
+jade with php inspired in twig, note `this does not cover all options of twig`
 
 ##install
 ```
@@ -30,6 +30,18 @@ integration with php is bad, does not respect indenting
   <!-- indent? -->
   <?php endforeach; ?>
 ```
+##new featured
+optional use of signe " $ " and " ; ". 
+Now is posible: constants and variable assing
+
+jade | result
+------------ | -------------
+`li {{ variable }}` | `<li><?php echo $variable; ?></li>`
+`li {{ strrev($variable) }}` | `<li><?php echo strrev($variable); ?></li>`
+`li {{ myConstant|const }}` | `<li><?php echo myConstant; ?></li>`
+`li {{ this.variable }}` | `<li><?php echo $this->variable; ?></li>`
+`li {{ this.helper().object }}` | `<li><?php echo $this->helper()->object; ?></li>`
+
 ##examples
 variable in text
 ```jade
