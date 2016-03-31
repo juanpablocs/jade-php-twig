@@ -49,9 +49,6 @@ var jadeTwigPHP =  function(jade){
    */
   var addDollar = function(str){
     var str = str.trim();
-    // valid function
-    if(/\(/.test(str))
-      return str;
     // add dollar
     if(str.charAt(0)!=='$')
       return '$' + str;
@@ -69,7 +66,7 @@ var jadeTwigPHP =  function(jade){
       if(s.length<2)
         return '<?php echo ' + addDollar(addSemicolon(val))  + ' ?>';
       // dots convert to arrow 
-      return '<?php ' + addDollar(addSemicolon(s.join('->')))+' ?>';
+      return '<?php echo ' + addDollar(addSemicolon(s.join('->')))+' ?>';
     });
   };
   

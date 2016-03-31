@@ -20,5 +20,5 @@ describe('Test Variables PHP', function () {
     var expected = '<li><?php echo $this->testing; ?> and <?php echo $this->helper()->profile; ?></li>'
     fixtures.should.equal(expected);
   });
-
+  
 });
