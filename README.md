@@ -31,7 +31,7 @@ integration with php is bad, does not respect indenting
   <?php endforeach; ?>
 ```
 ##new featured
-optional use of the signes " $ " and " ; ". 
+optional use of the signs " $ " and " ; ". 
 Now is posible: constants and variable assing
 
 jade | result
